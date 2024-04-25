@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "co.edu.udea.compumovil.gr09_20241.RobERTO"
+    namespace = "co.edu.udea.compumovil.gr09_20241.roberto"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "co.edu.udea.compumovil.gr09_20241.RobERTO"
+        applicationId = "co.edu.udea.compumovil.gr09_20241.roberto"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
@@ -30,6 +30,7 @@ android {
         }
     }
     compileOptions {
+        isCoreLibraryDesugaringEnabled = true
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
@@ -59,6 +60,8 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

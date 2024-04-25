@@ -1,4 +1,4 @@
-package co.edu.udea.compumovil.gr09_20241.RobERTO
+package co.edu.udea.compumovil.gr09_20241.roberto
 
 import org.junit.Test
 

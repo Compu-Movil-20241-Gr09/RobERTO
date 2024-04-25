@@ -1,4 +1,4 @@
-package co.edu.udea.compumovil.gr09_20241.RobERTO
+package co.edu.udea.compumovil.gr09_20241.roberto
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,7 +10,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import co.edu.udea.compumovil.gr09_20241.RobERTO.ui.theme.RobERTOTheme
+import co.edu.udea.compumovil.gr09_20241.roberto.ui.activities.HomeScreen
+import co.edu.udea.compumovil.gr09_20241.roberto.ui.theme.RobERTOTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,12 +19,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             RobERTOTheme {
                 // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
+                HomeScreen()
             }
         }
     }

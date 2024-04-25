@@ -1,4 +1,4 @@
-package co.edu.udea.compumovil.gr09_20241.RobERTO.ui.theme
+package co.edu.udea.compumovil.gr09_20241.roberto.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
