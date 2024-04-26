@@ -7,10 +7,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.tooling.preview.Preview
 import co.edu.udea.compumovil.gr09_20241.roberto.data.generateDateItems
+import co.edu.udea.compumovil.gr09_20241.roberto.data.states.TaskState
+import co.edu.udea.compumovil.gr09_20241.roberto.events.TaskEvent
 import co.edu.udea.compumovil.gr09_20241.roberto.ui.composables.DateCarousel
 
 @Composable
-fun HomeScreen(){
+fun HomeScreen(
+    state: TaskState,
+    onEvent: (TaskEvent) -> Unit
+){
     val configuration = LocalConfiguration.current
     val orientation = configuration.orientation
 
@@ -23,10 +28,10 @@ fun HomeScreen(){
 
 @Composable
 fun HomePortrait(){
-    val dateItems = generateDateItems()
+    //val dateItems = generateDateItems()
 
     Column {
-        DateCarousel(dateItems = dateItems)
+        DateCarousel(dateItems = emptyList())
     }
 }
 
