@@ -15,6 +15,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
@@ -26,24 +28,30 @@ import co.edu.udea.compumovil.gr09_20241.roberto.data.states.RoutineState
 import co.edu.udea.compumovil.gr09_20241.roberto.events.RoutineEvent
 import co.edu.udea.compumovil.gr09_20241.roberto.ui.composables.DaysSelector
 import co.edu.udea.compumovil.gr09_20241.roberto.ui.composables.NumberInput
+import co.edu.udea.compumovil.gr09_20241.roberto.view_models.RoutineViewModel
 
 @Composable
 fun NewRoutineScreen(
-    routineState: RoutineState,
-    onEvent: (RoutineEvent) -> Unit
+    routineViewModel: RoutineViewModel,
+    onEvent: (RoutineEvent) -> Unit,
+    onRoutineCreatedNav: () -> Unit
 ) {
     val configuration = LocalConfiguration.current
     val orientation = configuration.orientation
 
+    val routineState by routineViewModel.state.collectAsState()
+
     if(orientation == Configuration.ORIENTATION_PORTRAIT){
         NewRoutinePortrait(
             routineState,
-            onEvent
+            onEvent,
+            onRoutineCreatedNav
         )
     }else if (orientation == Configuration.ORIENTATION_LANDSCAPE){
         NewRoutineLandscape(
             routineState,
-            onEvent
+            onEvent,
+            onRoutineCreatedNav
         )
     }
 }
@@ -51,7 +59,8 @@ fun NewRoutineScreen(
 @Composable
 fun NewRoutinePortrait(
     state: RoutineState,
-    onEvent: (RoutineEvent) -> Unit
+    onEvent: (RoutineEvent) -> Unit,
+    onRoutineCreatedNav: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -132,6 +141,7 @@ fun NewRoutinePortrait(
             Button(
                 onClick = {
                     onEvent(RoutineEvent.SaveRoutine)
+                    onRoutineCreatedNav()
                 },
                 enabled = isNewRoutineValid(state)
             ) {
@@ -150,7 +160,8 @@ fun NewRoutinePortrait(
 @Composable
 fun NewRoutineLandscape(
     state: RoutineState,
-    onEvent: (RoutineEvent) -> Unit
+    onEvent: (RoutineEvent) -> Unit,
+    onRoutineCreatedNav: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -197,9 +208,7 @@ fun NewRoutineLandscape(
 
         // DaySelector for frecuency
         Text(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
+            modifier = Modifier,
             text = stringResource(R.string.repeat),
             style = MaterialTheme.typography.headlineSmall
         )
@@ -212,18 +221,43 @@ fun NewRoutineLandscape(
         )
 
         // NumberInput for session time
+        Text(
+            modifier = Modifier,
+            text = stringResource(R.string.session_time),
+            style = MaterialTheme.typography.headlineSmall
+        )
         NumberInput(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
+                .fillMaxWidth(),
             onValueChanged = {onEvent(RoutineEvent.SetSessionTime(it))},
             label = stringResource(R.string.session_time)
         )
+
+        // Create Button
+        Row (
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.End
+        ){
+            Button(
+                onClick = {
+                    onEvent(RoutineEvent.SaveRoutine)
+                    onRoutineCreatedNav()
+                },
+                enabled = isNewRoutineValid(state)
+            ) {
+                Row {
+                    Text(text = stringResource(R.string.create))
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.Send,
+                        contentDescription = ""
+                    )
+                }
+            }
+        }
     }
 }
 
-fun isNewRoutineValid(
-    state: RoutineState
-) : Boolean {
+fun isNewRoutineValid( state: RoutineState) : Boolean {
     return state.title.isNotBlank() && state.frecuency.isNotBlank() && state.sessionTime != 0f
 }
