@@ -74,7 +74,7 @@ class RoutineViewModel(
             }
             is RoutineEvent.SetTitle -> {
                 _state.update { it.copy(
-                    description = event.title
+                    title = event.title
                 ) }
             }
         }

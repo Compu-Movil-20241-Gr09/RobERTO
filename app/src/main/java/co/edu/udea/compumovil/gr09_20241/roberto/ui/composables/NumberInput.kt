@@ -26,6 +26,7 @@ import kotlin.math.max
 
 @Composable
 fun NumberInput(
+    modifier: Modifier = Modifier,
     initialValue: Float = 0f,
     onValueChanged: (Float) -> Unit,
     label: String
@@ -40,7 +41,7 @@ fun NumberInput(
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .padding(16.dp)
     ) {

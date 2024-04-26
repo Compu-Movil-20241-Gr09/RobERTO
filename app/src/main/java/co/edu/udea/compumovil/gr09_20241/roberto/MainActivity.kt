@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.room.Room
 import co.edu.udea.compumovil.gr09_20241.roberto.database.RobertoDatabase
 import co.edu.udea.compumovil.gr09_20241.roberto.ui.activities.HomeScreen
+import co.edu.udea.compumovil.gr09_20241.roberto.ui.activities.NewRoutineScreen
 import co.edu.udea.compumovil.gr09_20241.roberto.ui.theme.RobERTOTheme
 import co.edu.udea.compumovil.gr09_20241.roberto.view_models.GoalViewModel
 import co.edu.udea.compumovil.gr09_20241.roberto.view_models.RoutineViewModel
@@ -67,8 +68,11 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             RobERTOTheme {
-                val taskState by taskViewModel.state.collectAsState()
-                HomeScreen(state = taskState, onEvent = taskViewModel::onEvent)
+                val routineState by routineViewModel.state.collectAsState()
+                NewRoutineScreen(
+                    routineState = routineState,
+                    onEvent = routineViewModel::onEvent
+                )
             }
         }
     }

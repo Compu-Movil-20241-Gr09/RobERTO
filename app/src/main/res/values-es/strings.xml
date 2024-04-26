@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">RobERTO</string>
+    <string name="welcome">¡Bienvenido</string>
+    <string name="home">Inicio</string>
+    <string name="new_task">Nueva Tarea</string>
+    <string name="new_routine">Nueva Rutina</string>
+    <string name="new_goal">Nuevo Objetivo</string>
+    <string name="back_button">Atras</string>
+    <string name="title">Título</string>
+    <string name="description">Descripción</string>
+    <string name="monday">Lunes</string>
+    <string name="tuesday">Martes</string>
+    <string name="wednesday">Miércoles</string>
+    <string name="thursday">Jueves</string>
+    <string name="friday">Viernes</string>
+    <string name="saturday">Sábado</string>
+    <string name="sunday">Domingo</string>
+    <string name="session_time">Tiempo por sesión</string>
+    <string name="repeat">Repetir los</string>
+</resources>
