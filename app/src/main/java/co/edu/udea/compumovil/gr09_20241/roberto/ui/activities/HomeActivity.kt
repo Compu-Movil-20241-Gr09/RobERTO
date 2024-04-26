@@ -33,7 +33,8 @@ fun HomeScreen(
     goalViewModel: GoalViewModel,
     onNewTaskSelected: () -> Unit,
     onNewRoutineSelected: () -> Unit,
-    onNewGoalSelected: () -> Unit
+    onNewGoalSelected: () -> Unit,
+    onListElementsSelected: () -> Unit
 ){
     val configuration = LocalConfiguration.current
     val orientation = configuration.orientation
@@ -49,7 +50,8 @@ fun HomeScreen(
             goalState,
             onNewTaskSelected,
             onNewRoutineSelected,
-            onNewGoalSelected
+            onNewGoalSelected,
+            onListElementsSelected
         )
     }else if (orientation == Configuration.ORIENTATION_LANDSCAPE){
         HomeLandscape(
@@ -58,7 +60,8 @@ fun HomeScreen(
             goalState,
             onNewTaskSelected,
             onNewRoutineSelected,
-            onNewGoalSelected
+            onNewGoalSelected,
+            onListElementsSelected
         )
     }
 }
@@ -70,7 +73,8 @@ fun HomePortrait(
     goalState: GoalState,
     onNewTaskSelected: () -> Unit,
     onNewRoutineSelected: () -> Unit,
-    onNewGoalSelected: () -> Unit
+    onNewGoalSelected: () -> Unit,
+    onListElementsSelected: () -> Unit
 ){
     val dateItems = generateDateItems()
 
@@ -84,10 +88,6 @@ fun HomePortrait(
         ) {
             Row {
                 Text(text = stringResource(R.string.new_task))
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ArrowForward,
-                    contentDescription = ""
-                )
             }
         }
         Button(
@@ -97,10 +97,6 @@ fun HomePortrait(
         ) {
             Row {
                 Text(text = stringResource(R.string.new_routine))
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ArrowForward,
-                    contentDescription = ""
-                )
             }
         }
         Button(
@@ -110,10 +106,15 @@ fun HomePortrait(
                 ) {
             Row {
                 Text(text = stringResource(R.string.new_goal))
-                Icon(
-                    imageVector = Icons.AutoMirrored.Filled.ArrowForward,
-                    contentDescription = ""
-                )
+            }
+        }
+        Button(
+            onClick = {
+                onListElementsSelected()
+            }
+        ) {
+            Row {
+                Text(text = stringResource(R.string.elements_lists))
             }
         }
     }
@@ -126,7 +127,8 @@ fun HomeLandscape(
     goalState: GoalState,
     onNewTaskSelected: () -> Unit,
     onNewRoutineSelected: () -> Unit,
-    onNewGoalSelected: () -> Unit
+    onNewGoalSelected: () -> Unit,
+    onListElementsSelected: () -> Unit
 ){
     val dateItems = generateDateItems()
 
@@ -170,6 +172,15 @@ fun HomeLandscape(
                     imageVector = Icons.AutoMirrored.Filled.ArrowForward,
                     contentDescription = ""
                 )
+            }
+        }
+        Button(
+            onClick = {
+                onListElementsSelected()
+            }
+        ) {
+            Row {
+                Text(text = stringResource(R.string.elements_lists))
             }
         }
     }
