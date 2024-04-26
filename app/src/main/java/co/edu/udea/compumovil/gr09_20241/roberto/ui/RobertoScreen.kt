@@ -115,13 +115,13 @@ fun RobertoApp(
                 )
             }
             composable(route = RobertoScreen.NewTask.name){
-                /*NewTaskScreen(
+                NewTaskScreen(
                     taskViewModel = taskViewModel,
                     onEvent = taskViewModel::onEvent,
                     onTaskCreatedNav = {
                         navController.navigate(RobertoScreen.Home.name)
                     }
-                )*/
+                )
             }
             composable(route = RobertoScreen.NewRoutine.name){
                 NewRoutineScreen(
