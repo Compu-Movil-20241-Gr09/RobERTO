@@ -23,7 +23,6 @@ fun HomeScreen(){
 
 @Composable
 fun HomePortrait(){
-
     val dateItems = generateDateItems()
 
     Column {
