@@ -27,6 +27,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import co.edu.udea.compumovil.gr09_20241.roberto.R
 import co.edu.udea.compumovil.gr09_20241.roberto.ui.activities.HomeScreen
+import co.edu.udea.compumovil.gr09_20241.roberto.ui.activities.NewGoalScreen
 import co.edu.udea.compumovil.gr09_20241.roberto.ui.activities.NewRoutineScreen
 import co.edu.udea.compumovil.gr09_20241.roberto.view_models.GoalViewModel
 import co.edu.udea.compumovil.gr09_20241.roberto.view_models.RoutineViewModel
@@ -133,13 +134,13 @@ fun RobertoApp(
                 )
             }
             composable(route = RobertoScreen.NewGoal.name){
-                /*NewGoalScreen(
+                NewGoalScreen(
                     goalViewModel = goalViewModel,
                     onEvent = goalViewModel::onEvent,
                     onGoalCreatedNav = {
                         navController.navigate(RobertoScreen.Home.name)
                     }
-                )*/
+                )
             }
         }
     }
