@@ -18,4 +18,5 @@
     <string name="sunday">Domingo</string>
     <string name="session_time">Tiempo por sesión</string>
     <string name="repeat">Repetir los</string>
+    <string name="create">Crear</string>
 </resources>
