@@ -57,7 +57,7 @@ fun NewTaskScreen(
 }
 
 @Composable
-fun NewRoutinePortrait(
+fun NewTaskPortrait(
     state: TaskState,
     onEvent: (TaskEvent) -> Unit,
     onTaskCreatedNav: () -> Unit
@@ -105,31 +105,31 @@ fun NewRoutinePortrait(
             maxLines = 5
         )
 
-        // DaySelector for frecuency
+        // DatePicker for dueDate
         Text(
             modifier = Modifier,
             text = stringResource(R.string.repeat),
             style = MaterialTheme.typography.headlineSmall
         )
-        DaysSelector(
+        DatePicker(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
-            selectedDays = state.frecuency,
-            onDaySelectedChange = { onEvent(RoutineEvent.SetFrecuency(it)) }
+            value = state.frecuency,
+            onValueChange = { onEvent(RoutineEvent.SetFrecuency(it)) }
         )
 
-        // NumberInput for session time
+        // NumberInput for Estimated time
         Text(
             modifier = Modifier,
-            text = stringResource(R.string.session_time),
+            text = stringResource(R.string.estimated_time),
             style = MaterialTheme.typography.headlineSmall
         )
         NumberInput(
             modifier = Modifier
                 .fillMaxWidth(),
-            onValueChanged = {onEvent(RoutineEvent.SetSessionTime(it))},
-            label = stringResource(R.string.session_time)
+            onValueChanged = {onEvent(TaskEvent.SetEstimatedTime(it))},
+            label = stringResource(R.string.estimated_time)
         )
 
         // Create Button
@@ -140,10 +140,10 @@ fun NewRoutinePortrait(
         ){
             Button(
                 onClick = {
-                    onEvent(RoutineEvent.SaveRoutine)
-                    onRoutineCreatedNav()
+                    onEvent(TaskEvent.SaveTask)
+                    onTaskCreatedNav()
                 },
-                enabled = isNewRoutineValid(state)
+                enabled = isNewTaskValid(state)
             ) {
                 Row {
                     Text(text = stringResource(R.string.create))
