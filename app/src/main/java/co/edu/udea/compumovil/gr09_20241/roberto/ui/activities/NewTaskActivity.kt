@@ -26,8 +26,8 @@ import androidx.compose.ui.unit.dp
 import co.edu.udea.compumovil.gr09_20241.roberto.R
 import co.edu.udea.compumovil.gr09_20241.roberto.data.states.TaskState
 import co.edu.udea.compumovil.gr09_20241.roberto.events.TaskEvent
-import co.edu.udea.compumovil.gr09_20241.roberto.ui.composables.DaysSelector
 import co.edu.udea.compumovil.gr09_20241.roberto.ui.composables.NumberInput
+import co.edu.udea.compumovil.gr09_20241.roberto.ui.composables.TextFieldDatePicker
 import co.edu.udea.compumovil.gr09_20241.roberto.view_models.TaskViewModel
 
 @Composable
@@ -77,7 +77,7 @@ fun NewTaskPortrait(
                 .padding(16.dp),
             value = state.title,
             onValueChange = {
-                onEvent(RoutineEvent.SetTitle(it))
+                onEvent(TaskEvent.SetTitle(it))
             },
             label = {
                     Text(text = stringResource(R.string.title))
@@ -95,7 +95,7 @@ fun NewTaskPortrait(
                 .padding(16.dp),
             value = state.description,
             onValueChange = {
-                onEvent(RoutineEvent.SetDescription(it))
+                onEvent(TaskEvent.SetDescription(it))
             },
             label = {
                 Text(text = stringResource(R.string.description))
@@ -113,12 +113,10 @@ fun NewTaskPortrait(
             text = stringResource(R.string.repeat),
             style = MaterialTheme.typography.headlineSmall
         )
-        DatePicker(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-            value = state.frecuency,
-            onValueChange = { onEvent(RoutineEvent.SetFrecuency(it)) }
+        TextFieldDatePicker(
+            label = "Deadline",
+            value = state.deadline,
+            onValueChange = { onEvent(TaskEvent.SetDeadline(it)) }
         )
 
         // NumberInput for Estimated time
@@ -158,4 +156,107 @@ fun NewTaskPortrait(
         }
     }
 
+}
+
+@Composable
+fun NewTaskLandscape(
+    state: TaskState,
+    onEvent: (TaskEvent) -> Unit,
+    onTaskCreatedNav: () -> Unit
+) {
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        // Title TextField
+        OutlinedTextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            value = state.title,
+            onValueChange = {
+                onEvent(TaskEvent.SetTitle(it))
+            },
+            label = {
+                Text(text = stringResource(R.string.title))
+            },
+            keyboardOptions = KeyboardOptions(
+                imeAction = ImeAction.Next
+            ),
+            singleLine = true
+        )
+
+        // Description TextField
+        OutlinedTextField(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            value = state.description,
+            onValueChange = {
+                onEvent(TaskEvent.SetDescription(it))
+            },
+            label = {
+                Text(text = stringResource(R.string.description))
+            },
+            keyboardOptions = KeyboardOptions(
+                imeAction = ImeAction.Next
+            ),
+            singleLine = false,
+            maxLines = 5
+        )
+
+        // DatePicker for dueDate
+        Text(
+            modifier = Modifier,
+            text = stringResource(R.string.repeat),
+            style = MaterialTheme.typography.headlineSmall
+        )
+        TextFieldDatePicker(
+            label = "Deadline",
+            value = state.deadline,
+            onValueChange = { onEvent(TaskEvent.SetDeadline(it)) }
+        )
+
+        // NumberInput for Estimated time
+        Text(
+            modifier = Modifier,
+            text = stringResource(R.string.estimated_time),
+            style = MaterialTheme.typography.headlineSmall
+        )
+        NumberInput(
+            modifier = Modifier
+                .fillMaxWidth(),
+            onValueChanged = {onEvent(TaskEvent.SetEstimatedTime(it))},
+            label = stringResource(R.string.estimated_time)
+        )
+
+        // Create Button
+        Row (
+            modifier = Modifier
+                .fillMaxWidth(),
+            horizontalArrangement = Arrangement.End
+        ){
+            Button(
+                onClick = {
+                    onEvent(TaskEvent.SaveTask)
+                    onTaskCreatedNav()
+                },
+                enabled = isNewTaskValid(state)
+            ) {
+                Row {
+                    Text(text = stringResource(R.string.create))
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.Send,
+                        contentDescription = ""
+                    )
+                }
+            }
+        }
+    }
+}
+
+fun isNewTaskValid( state: TaskState) : Boolean {
+    return state.title.isNotBlank() && state.deadline.isNotBlank() && state.estimatedTime != 0f
 }
