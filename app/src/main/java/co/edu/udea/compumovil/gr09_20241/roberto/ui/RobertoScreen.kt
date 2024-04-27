@@ -27,8 +27,13 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import co.edu.udea.compumovil.gr09_20241.roberto.R
 import co.edu.udea.compumovil.gr09_20241.roberto.ui.activities.HomeScreen
+
 import co.edu.udea.compumovil.gr09_20241.roberto.ui.activities.NewGoalScreen
+
+import co.edu.udea.compumovil.gr09_20241.roberto.ui.activities.ListItemsScreen
+
 import co.edu.udea.compumovil.gr09_20241.roberto.ui.activities.NewRoutineScreen
+import co.edu.udea.compumovil.gr09_20241.roberto.ui.activities.NewTaskScreen
 import co.edu.udea.compumovil.gr09_20241.roberto.view_models.GoalViewModel
 import co.edu.udea.compumovil.gr09_20241.roberto.view_models.RoutineViewModel
 import co.edu.udea.compumovil.gr09_20241.roberto.view_models.TaskViewModel
@@ -38,7 +43,8 @@ enum class RobertoScreen(@StringRes val title: Int){
     Home(title = R.string.home),
     NewTask(title = R.string.new_task),
     NewRoutine(title = R.string.new_routine),
-    NewGoal(title = R.string.new_goal)
+    NewGoal(title = R.string.new_goal),
+    ListItems(title = R.string.elements_lists)
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -112,17 +118,20 @@ fun RobertoApp(
                     },
                     onNewGoalSelected = {
                         navController.navigate(RobertoScreen.NewGoal.name)
+                    },
+                    onListElementsSelected = {
+                        navController.navigate(RobertoScreen.ListItems.name)
                     }
                 )
             }
             composable(route = RobertoScreen.NewTask.name){
-                /*NewTaskScreen(
+                NewTaskScreen(
                     taskViewModel = taskViewModel,
                     onEvent = taskViewModel::onEvent,
                     onTaskCreatedNav = {
                         navController.navigate(RobertoScreen.Home.name)
                     }
-                )*/
+                )
             }
             composable(route = RobertoScreen.NewRoutine.name){
                 NewRoutineScreen(
@@ -140,6 +149,13 @@ fun RobertoApp(
                     onGoalCreatedNav = {
                         navController.navigate(RobertoScreen.Home.name)
                     }
+                )
+            }
+            composable(route = RobertoScreen.ListItems.name){
+                ListItemsScreen(
+                    taskViewModel = taskViewModel,
+                    routineViewModel = routineViewModel,
+                    goalViewModel = goalViewModel
                 )
             }
         }
