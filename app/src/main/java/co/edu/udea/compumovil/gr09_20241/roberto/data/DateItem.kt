@@ -1,4 +1,4 @@
-package co.edu.udea.compumovil.gr09_20241.roberto.ui
+package co.edu.udea.compumovil.gr09_20241.roberto.data
 
 import android.os.Bundle
 import java.time.LocalDate

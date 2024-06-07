@@ -21,7 +21,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import co.edu.udea.compumovil.gr09_20241.roberto.R
-import co.edu.udea.compumovil.gr09_20241.roberto.states.UserState
+import co.edu.udea.compumovil.gr09_20241.roberto.data.states.UserState
 import co.edu.udea.compumovil.gr09_20241.roberto.view_models.UserViewModel
 
 

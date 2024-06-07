@@ -18,7 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import co.edu.udea.compumovil.gr09_20241.roberto.ui.DateItem
+import co.edu.udea.compumovil.gr09_20241.roberto.data.DateItem
 import java.time.LocalDate
 
 @OptIn(ExperimentalFoundationApi::class)

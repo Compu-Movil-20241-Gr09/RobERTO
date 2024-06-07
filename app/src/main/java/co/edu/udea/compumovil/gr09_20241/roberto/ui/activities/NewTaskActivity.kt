@@ -24,7 +24,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import co.edu.udea.compumovil.gr09_20241.roberto.R
-import co.edu.udea.compumovil.gr09_20241.roberto.states.TaskState
+import co.edu.udea.compumovil.gr09_20241.roberto.data.states.TaskState
 import co.edu.udea.compumovil.gr09_20241.roberto.events.TaskEvent
 import co.edu.udea.compumovil.gr09_20241.roberto.ui.composables.NumberInput
 import co.edu.udea.compumovil.gr09_20241.roberto.ui.composables.TextFieldDatePicker

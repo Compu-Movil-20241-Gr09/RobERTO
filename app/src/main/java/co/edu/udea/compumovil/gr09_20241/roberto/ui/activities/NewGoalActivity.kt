@@ -20,7 +20,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import co.edu.udea.compumovil.gr09_20241.roberto.R
-import co.edu.udea.compumovil.gr09_20241.roberto.states.GoalState
+import co.edu.udea.compumovil.gr09_20241.roberto.data.states.GoalState
 import co.edu.udea.compumovil.gr09_20241.roberto.events.GoalEvent
 import co.edu.udea.compumovil.gr09_20241.roberto.view_models.GoalViewModel
 

@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import co.edu.udea.compumovil.gr09_20241.roberto.database.user.User
 import co.edu.udea.compumovil.gr09_20241.roberto.database.user.UserDAO
 import co.edu.udea.compumovil.gr09_20241.roberto.events.UserEvent
-import co.edu.udea.compumovil.gr09_20241.roberto.states.UserState
+import co.edu.udea.compumovil.gr09_20241.roberto.data.states.UserState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted

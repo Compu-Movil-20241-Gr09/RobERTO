@@ -26,7 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 
 import androidx.compose.ui.unit.dp
 import co.edu.udea.compumovil.gr09_20241.roberto.R
-import co.edu.udea.compumovil.gr09_20241.roberto.states.RoutineState
+import co.edu.udea.compumovil.gr09_20241.roberto.data.states.RoutineState
 import co.edu.udea.compumovil.gr09_20241.roberto.events.RoutineEvent
 import co.edu.udea.compumovil.gr09_20241.roberto.ui.composables.DaysSelector
 import co.edu.udea.compumovil.gr09_20241.roberto.ui.composables.NumberInput

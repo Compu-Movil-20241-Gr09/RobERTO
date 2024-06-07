@@ -2,7 +2,7 @@ package co.edu.udea.compumovil.gr09_20241.roberto.view_models
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import co.edu.udea.compumovil.gr09_20241.roberto.states.TaskState
+import co.edu.udea.compumovil.gr09_20241.roberto.data.states.TaskState
 import co.edu.udea.compumovil.gr09_20241.roberto.database.task.Task
 import co.edu.udea.compumovil.gr09_20241.roberto.database.task.TaskDAO
 import co.edu.udea.compumovil.gr09_20241.roberto.events.TaskEvent

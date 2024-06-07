@@ -2,7 +2,7 @@ package co.edu.udea.compumovil.gr09_20241.roberto.view_models
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import co.edu.udea.compumovil.gr09_20241.roberto.states.GoalState
+import co.edu.udea.compumovil.gr09_20241.roberto.data.states.GoalState
 import co.edu.udea.compumovil.gr09_20241.roberto.database.goal.Goal
 import co.edu.udea.compumovil.gr09_20241.roberto.database.goal.GoalDAO
 import co.edu.udea.compumovil.gr09_20241.roberto.events.GoalEvent
