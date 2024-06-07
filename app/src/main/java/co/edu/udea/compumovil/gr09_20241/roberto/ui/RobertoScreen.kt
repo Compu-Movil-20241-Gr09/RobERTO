@@ -174,20 +174,7 @@ fun RobertoApp(
             composable(route = RobertoScreen.Home.name){
                 HomeScreen(
                     taskViewModel = taskViewModel,
-                    routineViewModel = routineViewModel,
-                    goalViewModel = goalViewModel,
-                    onNewTaskSelected = {
-                        navController.navigate(RobertoScreen.NewTask.name)
-                    },
-                    onNewRoutineSelected = {
-                        navController.navigate(RobertoScreen.NewRoutine.name)
-                    },
-                    onNewGoalSelected = {
-                        navController.navigate(RobertoScreen.NewGoal.name)
-                    },
-                    onListElementsSelected = {
-                        navController.navigate(RobertoScreen.ListItems.name)
-                    }
+                    routineViewModel = routineViewModel
                 )
             }
             composable(route = RobertoScreen.NewTask.name){
@@ -195,7 +182,7 @@ fun RobertoApp(
                     taskViewModel = taskViewModel,
                     onEvent = taskViewModel::onEvent,
                     onTaskCreatedNav = {
-                        navController.navigate(RobertoScreen.Home.name)
+                        navController.navigateUp()
                     }
                 )
             }
@@ -204,7 +191,7 @@ fun RobertoApp(
                     routineViewModel = routineViewModel,
                     onEvent = routineViewModel::onEvent,
                     onRoutineCreatedNav = {
-                        navController.navigate(RobertoScreen.Home.name)
+                        navController.navigateUp()
                     }
                 )
             }
@@ -213,7 +200,7 @@ fun RobertoApp(
                     goalViewModel = goalViewModel,
                     onEvent = goalViewModel::onEvent,
                     onGoalCreatedNav = {
-                        navController.navigate(RobertoScreen.Home.name)
+                        navController.navigateUp()
                     }
                 )
             }

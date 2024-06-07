@@ -22,6 +22,7 @@ class GoalViewModel(
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(), emptyList())
 
     private val _state = MutableStateFlow(GoalState())
+
     val state = combine(_state, _goals){ state, goals ->
         state.copy(
             goals = goals
