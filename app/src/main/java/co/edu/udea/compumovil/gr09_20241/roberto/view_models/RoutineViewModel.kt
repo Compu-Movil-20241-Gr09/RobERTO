@@ -2,7 +2,7 @@ package co.edu.udea.compumovil.gr09_20241.roberto.view_models
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import co.edu.udea.compumovil.gr09_20241.roberto.data.states.RoutineState
+import co.edu.udea.compumovil.gr09_20241.roberto.states.RoutineState
 import co.edu.udea.compumovil.gr09_20241.roberto.database.routine.Routine
 import co.edu.udea.compumovil.gr09_20241.roberto.database.routine.RoutineDAO
 import co.edu.udea.compumovil.gr09_20241.roberto.events.RoutineEvent

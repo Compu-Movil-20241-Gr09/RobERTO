@@ -7,9 +7,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalConfiguration
-import co.edu.udea.compumovil.gr09_20241.roberto.data.states.GoalState
-import co.edu.udea.compumovil.gr09_20241.roberto.data.states.RoutineState
-import co.edu.udea.compumovil.gr09_20241.roberto.data.states.TaskState
+import co.edu.udea.compumovil.gr09_20241.roberto.states.GoalState
+import co.edu.udea.compumovil.gr09_20241.roberto.states.RoutineState
+import co.edu.udea.compumovil.gr09_20241.roberto.states.TaskState
 import co.edu.udea.compumovil.gr09_20241.roberto.ui.composables.ExpandableList
 import co.edu.udea.compumovil.gr09_20241.roberto.view_models.GoalViewModel
 import co.edu.udea.compumovil.gr09_20241.roberto.view_models.RoutineViewModel
@@ -45,7 +45,6 @@ fun ListItemsPortrait(
     routineState: RoutineState,
     goalState: GoalState
 ) {
-
     Column {
         ExpandableList(
             text = "Tasks",

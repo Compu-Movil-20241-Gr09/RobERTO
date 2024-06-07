@@ -1,4 +1,4 @@
-package co.edu.udea.compumovil.gr09_20241.roberto.data
+package co.edu.udea.compumovil.gr09_20241.roberto.ui
 
 import android.os.Bundle
 import java.time.LocalDate
@@ -43,5 +43,3 @@ fun generateDateItems(): List<DateItem>{
     }
     return dates
 }
-
-
