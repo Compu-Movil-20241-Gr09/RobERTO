@@ -25,4 +25,7 @@
     <string name="login">Autenticación</string>
     <string name="register">Registro</string>
     <string name="deadline">Fecha límite</string>
+    <string name="tasks">Tarea</string>
+    <string name="routines">Rutinas</string>
+    <string name="goals">Objetivos</string>
 </resources>
