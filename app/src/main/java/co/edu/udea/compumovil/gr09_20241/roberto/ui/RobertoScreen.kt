@@ -5,8 +5,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -20,20 +22,26 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -96,17 +104,19 @@ fun RobertoTopAppBar(
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RobertoBottomAppBar(
     navController: NavHostController,
     modifier: Modifier = Modifier,
 ) {
-    var isDropdownMenuExpanded by remember {
+    val sheetState = rememberModalBottomSheetState()
+    var isSheetOpen by rememberSaveable {
         mutableStateOf(false)
     }
 
     BottomAppBar(
-        containerColor = RobertoColor
+        containerColor = MaterialTheme.colorScheme.primaryContainer
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -115,34 +125,52 @@ fun RobertoBottomAppBar(
             IconButton(onClick = { navController.navigate(RobertoScreen.ListItems.name) }) {
                 Icon(Icons.AutoMirrored.Filled.List, contentDescription = "List")
             }
-            IconButton(onClick = { isDropdownMenuExpanded = !isDropdownMenuExpanded }) {
+            IconButton(onClick = {
+                isSheetOpen = true
+            }) {
                 Icon(Icons.Default.Add, contentDescription = "Add")
             }
-            DropdownMenu(
-                expanded = isDropdownMenuExpanded,
-                onDismissRequest = { isDropdownMenuExpanded = false }
-            ) {
-                DropdownMenuItem(
-                    text = { Text(text = stringResource(R.string.new_task)) },
-                    onClick = {
-                        isDropdownMenuExpanded = false
-                        navController.navigate(RobertoScreen.NewTask.name)
+            if(isSheetOpen){
+                ModalBottomSheet(
+                    sheetState = sheetState,
+                    onDismissRequest = { isSheetOpen = false }
+                ) {
+                    Spacer(modifier = Modifier.height(16.dp))
+                    OutlinedButton(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp, 4.dp),
+                        onClick = {
+                            navController.navigate(RobertoScreen.NewTask.name)
+                            isSheetOpen = false
+                        }
+                    ) {
+                        Text(text = stringResource(R.string.new_task))
                     }
-                )
-                DropdownMenuItem(
-                    text = { Text(text = stringResource(R.string.new_routine)) },
-                    onClick = {
-                        isDropdownMenuExpanded = false
-                        navController.navigate(RobertoScreen.NewRoutine.name)
+                    OutlinedButton(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp, 4.dp),
+                        onClick = {
+                            navController.navigate(RobertoScreen.NewRoutine.name)
+                            isSheetOpen = false
+                        }
+                    ) {
+                        Text(text = stringResource(R.string.new_routine))
                     }
-                )
-                DropdownMenuItem(
-                    text = { Text(text = stringResource(R.string.new_goal)) },
-                    onClick = {
-                        isDropdownMenuExpanded = false
-                        navController.navigate(RobertoScreen.NewGoal.name)
+                    OutlinedButton(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp, 4.dp),
+                        onClick = {
+                            navController.navigate(RobertoScreen.NewGoal.name)
+                            isSheetOpen = false
+                        }
+                    ) {
+                        Text(text = stringResource(R.string.new_goal))
                     }
-                )
+                    Spacer(modifier = Modifier.height(50.dp))
+                }
             }
         }
     }
