@@ -125,9 +125,9 @@ fun RobertoBottomAppBar(
             IconButton(onClick = { navController.navigate(RobertoScreen.ListItems.name) }) {
                 Icon(Icons.AutoMirrored.Filled.List, contentDescription = "List")
             }
-            IconButton(onClick = {
-                isSheetOpen = true
-            }) {
+
+
+            IconButton(onClick = { isSheetOpen = true }) {
                 Icon(Icons.Default.Add, contentDescription = "Add")
             }
             if(isSheetOpen){
@@ -200,12 +200,6 @@ fun RobertoApp(
                 modifier = Modifier.background(RobertoColor)
             )
         },
-        bottomBar = {
-            RobertoBottomAppBar(
-                navController = navController,
-                modifier = Modifier.background(RobertoColor)
-            )
-        }
     ) { innerPadding ->
         NavHost(
             navController = navController,
