@@ -24,4 +24,5 @@
     <string name="estimated_time">Tiempo estimado</string>
     <string name="login">Autenticación</string>
     <string name="register">Registro</string>
+    <string name="deadline">Fecha límite</string>
 </resources>

@@ -2,10 +2,9 @@ package co.edu.udea.compumovil.gr09_20241.roberto.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple80 = Color(0xFFD0BCFF)
-val PurpleGrey80 = Color(0xFFCCC2DC)
-val Pink80 = Color(0xFFEFB8C8)
+val RobertoColor = Color(0xFF4279A0)
 
-val Purple40 = Color(0xFF6650a4)
-val PurpleGrey40 = Color(0xFF625b71)
-val Pink40 = Color(0xFF7D5260)
+val LightSecondary = Color(0xFF8FA6B2)  // Un gris azulado claro
+val LightTertiary = Color(0xFF97B9A0)  // Un verde grisáceo claro
+val DarkSecondary = Color(0xFF5B7382)  // Un gris azulado oscuro
+val DarkTertiary = Color(0xFF5C7768)

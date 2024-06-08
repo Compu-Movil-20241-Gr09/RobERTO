@@ -108,13 +108,11 @@ fun NewTaskPortrait(
         )
 
         // DatePicker for dueDate
-        Text(
-            modifier = Modifier,
-            text = stringResource(R.string.repeat),
-            style = MaterialTheme.typography.headlineSmall
-        )
         TextFieldDatePicker(
-            label = "Deadline",
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            label = stringResource(R.string.deadline),
             value = state.deadline,
             onValueChange = { onEvent(TaskEvent.SetDeadline(it)) }
         )

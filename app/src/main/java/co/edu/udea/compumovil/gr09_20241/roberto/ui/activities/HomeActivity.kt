@@ -157,6 +157,7 @@ fun HomeScreen(
                         ) {
                             Text(text = stringResource(R.string.new_goal))
                         }
+                        Spacer(modifier = Modifier.height(50.dp))
                     }
                 }
             } // End Row
@@ -166,7 +167,7 @@ fun HomeScreen(
                     title = scheduledItem.title,
                     type = scheduledItem.type,
                     time = "${scheduledItem.startTime} - ${scheduledItem.endTime}",
-                    backgroundColor = if (scheduledItem.type == "Task") MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary
+                    backgroundColor = if (scheduledItem.type == "Task") MaterialTheme.colorScheme.secondary  else MaterialTheme.colorScheme.tertiary,
                 )
             }
         }

@@ -41,7 +41,7 @@ fun DaysSelector(
         Pair("SATURDAY", R.string.saturday),
         Pair("SUNDAY", R.string.sunday)
     )
-    val activeColor = Color.Blue
+    val activeColor = MaterialTheme.colorScheme.primary
     val inactiveColor = MaterialTheme.colorScheme.secondaryContainer
 
     Row(

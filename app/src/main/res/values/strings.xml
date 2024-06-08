@@ -23,4 +23,5 @@
     <string name="estimated_time">Estimated time</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
+    <string name="deadline">Deadline</string>
 </resources>

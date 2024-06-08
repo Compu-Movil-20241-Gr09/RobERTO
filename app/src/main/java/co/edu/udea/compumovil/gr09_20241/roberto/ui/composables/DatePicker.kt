@@ -24,6 +24,7 @@ import java.util.Date
 
 @Composable
 fun TextFieldDatePicker(
+    modifier: Modifier = Modifier,
     label: String,
     value: String,
     onValueChange: ((String) -> Unit)
@@ -53,8 +54,7 @@ fun TextFieldDatePicker(
         verticalAlignment = Alignment.CenterVertically
     ) {
         OutlinedTextField(
-            modifier = Modifier
-                .padding(2.dp)
+            modifier = modifier
                 .clickable { mDatePickerDialog.show() },
             value = value,
             onValueChange = onValueChange,
