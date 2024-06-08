@@ -191,7 +191,8 @@ fun RobertoApp(
                 HomeScreen(
                     taskViewModel = taskViewModel,
                     routineViewModel = routineViewModel,
-                    scheduledItemViewModel = scheduledItemViewModel
+                    scheduledItemViewModel = scheduledItemViewModel,
+                    navController = navController
                 )
             }
             composable(route = RobertoScreen.LoginRegister.name) {
@@ -227,7 +228,8 @@ fun RobertoApp(
                 HomeScreen(
                     taskViewModel = taskViewModel,
                     routineViewModel = routineViewModel,
-                    scheduledItemViewModel = scheduledItemViewModel
+                    scheduledItemViewModel = scheduledItemViewModel,
+                    navController = navController
                 )
             }
             composable(route = RobertoScreen.NewTask.name) {
