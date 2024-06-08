@@ -3,9 +3,7 @@ package co.edu.udea.compumovil.gr09_20241.roberto.ui.activities
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-<<<<<<< HEAD
 import androidx.compose.material3.MaterialTheme
-=======
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,20 +20,16 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.rememberModalBottomSheetState
->>>>>>> dc8c55817c8f26c5e803a332c5b8199330c5c190
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-<<<<<<< HEAD
-=======
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -46,7 +40,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import co.edu.udea.compumovil.gr09_20241.roberto.R
 import co.edu.udea.compumovil.gr09_20241.roberto.ui.RobertoScreen
->>>>>>> dc8c55817c8f26c5e803a332c5b8199330c5c190
 import co.edu.udea.compumovil.gr09_20241.roberto.ui.composables.DateCarousel
 import co.edu.udea.compumovil.gr09_20241.roberto.ui.composables.ScheduledCard
 import co.edu.udea.compumovil.gr09_20241.roberto.utils.generateDateItems
@@ -71,14 +64,11 @@ fun HomeScreen(
 
     val dateItems = generateDateItems()
 
-<<<<<<< HEAD
-=======
     val sheetState = rememberModalBottomSheetState()
     var isSheetOpen by rememberSaveable {
         mutableStateOf(false)
     }
 
->>>>>>> dc8c55817c8f26c5e803a332c5b8199330c5c190
     // This will only run when tasks or routines change
     LaunchedEffect(taskState.tasks, routineState.routines) {
         scheduledItemViewModel.scheduleItems(
@@ -88,7 +78,6 @@ fun HomeScreen(
         )
     }
 
-<<<<<<< HEAD
     // State to keep track of the currently selected date
     val selectedDate = remember { mutableStateOf<LocalDate?>(null) }
 
@@ -98,24 +87,14 @@ fun HomeScreen(
         it.date == currentDate
     }
 
-    Column {
-        DateCarousel(dateItems = dateItems) { selectedDateItem ->
-            selectedDate.value = selectedDateItem.date
-        }
-
-        scheduledItemsForCurrentDate.forEach { scheduledItem ->
-            ScheduledCard(
-                title = scheduledItem.title,
-                type = scheduledItem.type,
-                time = "${scheduledItem.startTime} - ${scheduledItem.endTime}",
-                backgroundColor = if (scheduledItem.type == "Task") MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary
-            )
-=======
     Box(
         modifier = Modifier.fillMaxSize(),
     ) {
         Column {
-            DateCarousel(dateItems = dateItems)
+            DateCarousel(dateItems = dateItems) { selectedDateItem ->
+                selectedDate.value = selectedDateItem.date
+            }
+
             Row (
                 modifier = Modifier
             ) {
@@ -181,16 +160,15 @@ fun HomeScreen(
                     }
                 }
             } // End Row
-            scheduledState.scheduledItems.forEach { scheduledItem ->
+
+            scheduledItemsForCurrentDate.forEach { scheduledItem ->
                 ScheduledCard(
                     title = scheduledItem.title,
                     type = scheduledItem.type,
                     time = "${scheduledItem.startTime} - ${scheduledItem.endTime}",
-                    backgroundColor = if (scheduledItem.type == "Task") MaterialTheme.colorScheme.primary
-                    else MaterialTheme.colorScheme.secondary,
+                    backgroundColor = if (scheduledItem.type == "Task") MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary
                 )
             }
->>>>>>> dc8c55817c8f26c5e803a332c5b8199330c5c190
         }
     }
 }
