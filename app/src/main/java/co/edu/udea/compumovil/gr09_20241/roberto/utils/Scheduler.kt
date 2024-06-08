@@ -70,7 +70,7 @@ fun scheduleItemsUtil(
 
     // Sort tasks by deadline
     val sortedTasks = tasks.sortedBy {
-        it.deadline?.let { deadline -> LocalDateTime.parse(deadline, DateTimeFormatter.ofPattern("dd/MM/yyyy")) }
+        it.deadline?.let { deadline -> LocalDate.parse(deadline, dateFormatter) }
     }
 
     // Schedule tasks
