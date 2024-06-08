@@ -22,4 +22,6 @@
     <string name="create">Crear</string>
     <string name="elements_lists">Listas de elementos</string>
     <string name="estimated_time">Tiempo estimado</string>
+    <string name="login">Autenticación</string>
+    <string name="register">Registro</string>
 </resources>

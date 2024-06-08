@@ -6,14 +6,14 @@
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
 <<<<<<< HEAD
+=======
       <SelectionState runConfigName="NewItemBottomSheetPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
       <SelectionState runConfigName="Hola">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-=======
->>>>>>> d44953e (cambios Jacobo)
+>>>>>>> 8962e36525c31facfd726e42ba705a77d70d7a96
     </selectionStates>
   </component>
 </project>

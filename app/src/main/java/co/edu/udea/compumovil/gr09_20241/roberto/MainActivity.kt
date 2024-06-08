@@ -24,6 +24,7 @@ import co.edu.udea.compumovil.gr09_20241.roberto.ui.theme.RobERTOTheme
 import co.edu.udea.compumovil.gr09_20241.roberto.view_models.GoalViewModel
 import co.edu.udea.compumovil.gr09_20241.roberto.view_models.RoutineViewModel
 import co.edu.udea.compumovil.gr09_20241.roberto.view_models.TaskViewModel
+import co.edu.udea.compumovil.gr09_20241.roberto.view_models.UserViewModel
 
 class MainActivity : ComponentActivity() {
 
@@ -64,6 +65,17 @@ class MainActivity : ComponentActivity() {
             }
         }
     )
+
+    val userViewModel by viewModels<UserViewModel>(
+        factoryProducer = {
+            object : ViewModelProvider.Factory{
+                override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                    return UserViewModel(db.userDao) as T
+                }
+            }
+        }
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -72,7 +84,8 @@ class MainActivity : ComponentActivity() {
                 RobertoApp(
                     taskViewModel = taskViewModel,
                     routineViewModel = routineViewModel,
-                    goalViewModel = goalViewModel
+                    goalViewModel = goalViewModel,
+                    userViewModel = userViewModel
                 )
             }
         }

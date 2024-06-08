@@ -1,7 +1,9 @@
 package co.edu.udea.compumovil.gr09_20241.roberto.ui
 
 import androidx.annotation.StringRes
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -18,7 +20,6 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -28,8 +29,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -38,19 +43,23 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import co.edu.udea.compumovil.gr09_20241.roberto.R
 import co.edu.udea.compumovil.gr09_20241.roberto.ui.activities.HomeScreen
-
 import co.edu.udea.compumovil.gr09_20241.roberto.ui.activities.NewGoalScreen
-
 import co.edu.udea.compumovil.gr09_20241.roberto.ui.activities.ListItemsScreen
-
 import co.edu.udea.compumovil.gr09_20241.roberto.ui.activities.NewRoutineScreen
 import co.edu.udea.compumovil.gr09_20241.roberto.ui.activities.NewTaskScreen
+import co.edu.udea.compumovil.gr09_20241.roberto.ui.login_register.LoginRegisterScreen
+import co.edu.udea.compumovil.gr09_20241.roberto.ui.login_register.LoginScreen
+import co.edu.udea.compumovil.gr09_20241.roberto.ui.login_register.RegisterScreen
+import co.edu.udea.compumovil.gr09_20241.roberto.ui.theme.RobertoColor
 import co.edu.udea.compumovil.gr09_20241.roberto.view_models.GoalViewModel
 import co.edu.udea.compumovil.gr09_20241.roberto.view_models.RoutineViewModel
 import co.edu.udea.compumovil.gr09_20241.roberto.view_models.TaskViewModel
+import co.edu.udea.compumovil.gr09_20241.roberto.view_models.UserViewModel
 
-enum class RobertoScreen(@StringRes val title: Int){
-    Login(title = R.string.welcome),
+enum class RobertoScreen(@StringRes val title: Int) {
+    LoginRegister(title = R.string.app_name),
+    Login(title = R.string.login),
+    Register(title = R.string.register),
     Home(title = R.string.home),
     NewTask(title = R.string.new_task),
     NewRoutine(title = R.string.new_routine),
@@ -60,42 +69,43 @@ enum class RobertoScreen(@StringRes val title: Int){
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RobertoAppBar(
+fun RobertoTopAppBar(
     currentScreen: RobertoScreen,
     canNavigateBack: Boolean,
-    navigateUp:() -> Unit,
-    modifier: Modifier = Modifier
+    navigateUp: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     TopAppBar(
-        title = { Text(stringResource(currentScreen.title)) },
-        colors = TopAppBarDefaults.mediumTopAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer
-        ),
-        modifier = modifier,
-        navigationIcon = {
-            if(canNavigateBack){
-                IconButton(onClick = navigateUp) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Default.ArrowBack,
-                        contentDescription = stringResource(R.string.back_button)
-                    )
-                }
+        title = {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = stringResource(currentScreen.title),
+                    fontSize = 36.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
+                )
             }
-        }
+        },
+        colors = TopAppBarDefaults.mediumTopAppBarColors(
+            containerColor = RobertoColor
+        ),
     )
 }
 
 @Composable
 fun RobertoBottomAppBar(
     navController: NavHostController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     var isDropdownMenuExpanded by remember {
         mutableStateOf(false)
     }
 
     BottomAppBar(
-        containerColor = MaterialTheme.colorScheme.primaryContainer
+        containerColor = RobertoColor
     ) {
         Row(
             modifier = Modifier.fillMaxWidth(),
@@ -142,7 +152,9 @@ fun RobertoApp(
     taskViewModel: TaskViewModel = viewModel(),
     routineViewModel: RoutineViewModel = viewModel(),
     goalViewModel: GoalViewModel = viewModel(),
-    navController: NavHostController = rememberNavController()
+    navController: NavHostController = rememberNavController(),
+
+    userViewModel: UserViewModel = viewModel(),
 ) {
     // Get current back stack entry
     val backStackEntry by navController.currentBackStackEntryAsState()
@@ -150,47 +162,66 @@ fun RobertoApp(
     val currentScreen = RobertoScreen.valueOf(
         backStackEntry?.destination?.route ?: RobertoScreen.Home.name
     )
-
     Scaffold(
         topBar = {
-            RobertoAppBar(
+            RobertoTopAppBar(
                 currentScreen = currentScreen,
                 canNavigateBack = navController.previousBackStackEntry != null,
-                navigateUp = { navController.navigateUp() }
+                navigateUp = { navController.navigateUp() },
+                modifier = Modifier.background(RobertoColor)
             )
         },
         bottomBar = {
-            RobertoBottomAppBar(navController = navController)
+            RobertoBottomAppBar(
+                navController = navController,
+                modifier = Modifier.background(RobertoColor)
+            )
         }
-    ){ innerPadding ->
+    ) { innerPadding ->
         NavHost(
             navController = navController,
-            startDestination = RobertoScreen.Home.name,
+            startDestination = RobertoScreen.LoginRegister.name,
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
                 .padding(innerPadding)
-        ){
-            composable(route = RobertoScreen.Home.name){
-                HomeScreen(
-                    taskViewModel = taskViewModel,
-                    routineViewModel = routineViewModel,
-                    goalViewModel = goalViewModel,
-                    onNewTaskSelected = {
-                        navController.navigate(RobertoScreen.NewTask.name)
+        ) {
+            composable(route = RobertoScreen.LoginRegister.name) {
+                LoginRegisterScreen(
+                    userViewModel = userViewModel,
+                    onLoginSelected = {
+                        navController.navigate(route = RobertoScreen.Login.name)
                     },
-                    onNewRoutineSelected = {
-                        navController.navigate(RobertoScreen.NewRoutine.name)
+                    onRegisterSelected = {
+                        navController.navigate(route = RobertoScreen.Register.name)
                     },
-                    onNewGoalSelected = {
-                        navController.navigate(RobertoScreen.NewGoal.name)
-                    },
-                    onListElementsSelected = {
-                        navController.navigate(RobertoScreen.ListItems.name)
+                )
+            }
+            composable(route = RobertoScreen.Login.name) {
+                LoginScreen(
+                    userViewModel = userViewModel,
+                    onUserEvent = userViewModel::onUserEvent,
+                    onUserValidNav = {
+                        navController.navigate(route = RobertoScreen.Home.name)
                     }
                 )
             }
-            composable(route = RobertoScreen.NewTask.name){
+            composable(route = RobertoScreen.Register.name) {
+                RegisterScreen(
+                    userViewModel = userViewModel,
+                    onUserEvent = userViewModel::onUserEvent,
+                    onUserCreatedNav = {
+                        navController.navigate(route = RobertoScreen.LoginRegister.name)
+                    }
+                )
+            }
+            composable(route = RobertoScreen.Home.name) {
+                HomeScreen(
+                    taskViewModel = taskViewModel,
+                    routineViewModel = routineViewModel,
+                )
+            }
+            composable(route = RobertoScreen.NewTask.name) {
                 NewTaskScreen(
                     taskViewModel = taskViewModel,
                     onEvent = taskViewModel::onEvent,
@@ -199,7 +230,7 @@ fun RobertoApp(
                     }
                 )
             }
-            composable(route = RobertoScreen.NewRoutine.name){
+            composable(route = RobertoScreen.NewRoutine.name) {
                 NewRoutineScreen(
                     routineViewModel = routineViewModel,
                     onEvent = routineViewModel::onEvent,
@@ -208,7 +239,7 @@ fun RobertoApp(
                     }
                 )
             }
-            composable(route = RobertoScreen.NewGoal.name){
+            composable(route = RobertoScreen.NewGoal.name) {
                 NewGoalScreen(
                     goalViewModel = goalViewModel,
                     onEvent = goalViewModel::onEvent,
@@ -217,7 +248,7 @@ fun RobertoApp(
                     }
                 )
             }
-            composable(route = RobertoScreen.ListItems.name){
+            composable(route = RobertoScreen.ListItems.name) {
                 ListItemsScreen(
                     taskViewModel = taskViewModel,
                     routineViewModel = routineViewModel,
