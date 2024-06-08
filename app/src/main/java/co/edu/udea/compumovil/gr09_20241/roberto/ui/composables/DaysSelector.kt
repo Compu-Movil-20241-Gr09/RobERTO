@@ -33,13 +33,13 @@ fun DaysSelector(
     var selectedDaysList by remember { mutableStateOf(initialSelectedDays) }
 
     val dayPairs = listOf(
-        Pair("Monday", R.string.monday),
-        Pair("Tuesday", R.string.tuesday),
-        Pair("Wednesday", R.string.wednesday),
-        Pair("Thursday", R.string.thursday),
-        Pair("Friday", R.string.friday),
-        Pair("Saturday", R.string.saturday),
-        Pair("Sunday", R.string.sunday)
+        Pair("MONDAY", R.string.monday),
+        Pair("TUESDAY", R.string.tuesday),
+        Pair("WEDNESDAY", R.string.wednesday),
+        Pair("THURSDAY", R.string.thursday),
+        Pair("FRIDAY", R.string.friday),
+        Pair("SATURDAY", R.string.saturday),
+        Pair("SUNDAY", R.string.sunday)
     )
     val activeColor = Color.Blue
     val inactiveColor = MaterialTheme.colorScheme.secondaryContainer

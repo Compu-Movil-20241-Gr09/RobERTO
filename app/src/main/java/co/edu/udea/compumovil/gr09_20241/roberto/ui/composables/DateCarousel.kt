@@ -13,6 +13,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -23,14 +24,25 @@ import java.time.LocalDate
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun DateCarousel(dateItems: List<DateItem>) {
+fun DateCarousel(dateItems: List<DateItem>, onDateSelected: (DateItem) -> Unit) {
     val pagerState = rememberPagerState(
         initialPage = dateItems.indexOfFirst { it.date == LocalDate.now() },
         initialPageOffsetFraction = 0f
     ) {
         dateItems.size
     }
+
+    // Keep track of the currently selected date index
     val selectedDateIndex = remember { mutableStateOf(pagerState.currentPage) }
+
+    LaunchedEffect(pagerState.currentPage) {
+        // Update the isSelected property for the date items
+        dateItems.forEachIndexed { index, dateItem ->
+            dateItem.isSelected = index == pagerState.currentPage
+        }
+        // Call the callback function to notify the parent composable of the selected date change
+        onDateSelected(dateItems[pagerState.currentPage])
+    }
 
     HorizontalPager(
         state = pagerState,
@@ -57,6 +69,7 @@ fun DateCarousel(dateItems: List<DateItem>) {
             }
         }
 
+        // Update the selected date index when the page changes
         selectedDateIndex.value = page
     }
 }

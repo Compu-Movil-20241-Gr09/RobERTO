@@ -33,7 +33,7 @@ class RoutineViewModel(
                     dao.deleteRoutine(event.routine)
                 }
             }
-            is RoutineEvent.SaveRoutine -> {
+            RoutineEvent.SaveRoutine -> {
                 val title = _state.value.title
                 val description = _state.value.description
                 val frecuency = _state.value.frequency

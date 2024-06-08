@@ -55,11 +55,12 @@ fun scheduleItemsUtil(
             val parsedDate = parseDate(dateItem.formattedDate)
             if (dateItem.isSelected && parsedDate != null && routine.frequency.contains(parsedDate.dayOfWeek.toString())) {
                 val startTime = LocalTime.of(8, 0)
+                val endTime = startTime.plusHours(routine.sessionTime.toLong()) // Agrega el tiempo de la sesión a la hora de inicio
                 scheduledItems.add(
                     ScheduledItem(
                         date = dateItem.formattedDate,
                         startTime = startTime.format(timeFormatter),
-                        endTime = startTime.plusHours(1).format(timeFormatter), // Assuming 1 hour for routine
+                        endTime = endTime.format(timeFormatter), // Usa el tiempo de finalización calculado
                         title = routine.title,
                         type = "Routine"
                     )

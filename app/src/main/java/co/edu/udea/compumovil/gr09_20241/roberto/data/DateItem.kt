@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter
 class DateItem (
     val date: LocalDate,
     val formattedDate: String,
-    val isSelected: Boolean
+    var isSelected: Boolean
 ) {
     fun toBundle(): Bundle {
         val bundle = Bundle()
