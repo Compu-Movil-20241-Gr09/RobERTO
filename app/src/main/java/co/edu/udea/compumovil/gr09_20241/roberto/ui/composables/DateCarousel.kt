@@ -1,6 +1,7 @@
 package co.edu.udea.compumovil.gr09_20241.roberto.ui.composables
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import co.edu.udea.compumovil.gr09_20241.roberto.data.DateItem
+import co.edu.udea.compumovil.gr09_20241.roberto.ui.theme.HighlightColor
 import java.time.LocalDate
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -56,7 +59,10 @@ fun DateCarousel(dateItems: List<DateItem>, onDateSelected: (DateItem) -> Unit) 
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp)
-                .height(itemSize)
+                .height(itemSize),
+            colors = CardDefaults.cardColors(
+                containerColor = if (dateItem.isSelected) HighlightColor else MaterialTheme.colorScheme.background
+            )
         ) {
             Column(
                 modifier = Modifier

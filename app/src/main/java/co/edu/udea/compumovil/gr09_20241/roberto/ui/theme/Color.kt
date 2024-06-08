@@ -8,3 +8,4 @@ val LightSecondary = Color(0xFF8FA6B2)  // Un gris azulado claro
 val LightTertiary = Color(0xFF97B9A0)  // Un verde grisáceo claro
 val DarkSecondary = Color(0xFF5B7382)  // Un gris azulado oscuro
 val DarkTertiary = Color(0xFF5C7768)
+val HighlightColor = Color(0xFF5A9BD8)

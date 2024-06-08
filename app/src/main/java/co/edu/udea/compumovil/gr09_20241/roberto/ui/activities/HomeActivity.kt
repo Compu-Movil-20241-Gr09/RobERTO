@@ -14,6 +14,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.AddCircle
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -97,13 +98,14 @@ fun HomeScreen(
 
             Row (
                 modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                Spacer(modifier = Modifier.padding(40.dp))
-                // FloatingActionButton for List
                 FloatingActionButton(
                     onClick = { navController.navigate(RobertoScreen.ListItems.name) },
-                    modifier = Modifier.padding(16.dp) // Add padding around FAB
-                    // Position FAB bottom-right
+                    containerColor = Color(0xFF03A9F4),
                 ) {
                     Icon(Icons.AutoMirrored.Filled.List, contentDescription = "List")
                 }
@@ -113,8 +115,7 @@ fun HomeScreen(
                 // FloatingActionButton for Add
                 FloatingActionButton(
                     onClick = { isSheetOpen = true },
-                    modifier = Modifier
-                        .padding(16.dp) // Add padding around FAB // Position FAB bottom-right
+                    containerColor = Color(0xFF03A9F4),
                 ) {
                     Icon(imageVector = Icons.Filled.AddCircle, contentDescription = "Add item")
                 }
