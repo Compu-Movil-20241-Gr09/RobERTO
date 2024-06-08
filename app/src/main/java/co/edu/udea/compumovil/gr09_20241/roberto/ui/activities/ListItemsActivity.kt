@@ -45,7 +45,6 @@ fun ListItemsPortrait(
     routineState: RoutineState,
     goalState: GoalState
 ) {
-
     Column {
         ExpandableList(
             text = "Tasks",

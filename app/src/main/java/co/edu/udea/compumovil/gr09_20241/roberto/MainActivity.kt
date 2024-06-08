@@ -25,6 +25,7 @@ import co.edu.udea.compumovil.gr09_20241.roberto.view_models.GoalViewModel
 import co.edu.udea.compumovil.gr09_20241.roberto.view_models.RoutineViewModel
 import co.edu.udea.compumovil.gr09_20241.roberto.view_models.ScheduledItemViewModel
 import co.edu.udea.compumovil.gr09_20241.roberto.view_models.TaskViewModel
+import co.edu.udea.compumovil.gr09_20241.roberto.view_models.UserViewModel
 
 class MainActivity : ComponentActivity() {
 
@@ -71,6 +72,16 @@ class MainActivity : ComponentActivity() {
             object : ViewModelProvider.Factory{
                 override fun <T : ViewModel> create(modelClass: Class<T>): T {
                     return ScheduledItemViewModel(db.scheduledItemDao) as T
+                    }
+            }
+        }
+    )
+
+    val userViewModel by viewModels<UserViewModel>(
+        factoryProducer = {
+            object : ViewModelProvider.Factory{
+                override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                    return UserViewModel(db.userDao) as T
                 }
             }
         }
@@ -85,25 +96,10 @@ class MainActivity : ComponentActivity() {
                     taskViewModel = taskViewModel,
                     routineViewModel = routineViewModel,
                     goalViewModel = goalViewModel,
-                    scheduledItemViewModel = scheduledItemsViewModel
+                    scheduledItemViewModel = scheduledItemsViewModel,
+                    userViewModel = userViewModel
                 )
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    RobERTOTheme {
-        Greeting("Android")
     }
 }

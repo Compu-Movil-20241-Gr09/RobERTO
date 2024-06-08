@@ -10,13 +10,16 @@ import co.edu.udea.compumovil.gr09_20241.roberto.database.scheduledItem.Schedule
 import co.edu.udea.compumovil.gr09_20241.roberto.database.scheduledItem.ScheduledItemDAO
 import co.edu.udea.compumovil.gr09_20241.roberto.database.task.Task
 import co.edu.udea.compumovil.gr09_20241.roberto.database.task.TaskDAO
+import co.edu.udea.compumovil.gr09_20241.roberto.database.user.User
+import co.edu.udea.compumovil.gr09_20241.roberto.database.user.UserDAO
 
 @Database(
     entities = [
         Task::class,
         Routine::class,
         Goal::class,
-        ScheduledItem::class
+        ScheduledItem::class,
+        User::class
     ],
     version = 1
 )
@@ -25,4 +28,5 @@ abstract class RobertoDatabase: RoomDatabase() {
     abstract val routineDao: RoutineDAO
     abstract val goalDao: GoalDAO
     abstract val scheduledItemDao: ScheduledItemDAO
+    abstract val userDao: UserDAO
 }
