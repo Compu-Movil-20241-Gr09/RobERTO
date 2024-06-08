@@ -13,8 +13,8 @@ data class Routine(
     val title: String,
     @ColumnInfo(name = "description")
     val description: String?,
-    @ColumnInfo(name = "frecuency")
-    val frecuency: String,
+    @ColumnInfo(name = "frequency")
+    val frequency: String,
     @ColumnInfo(name = "session_time")
     val sessionTime: Float
 )

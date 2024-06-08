@@ -6,6 +6,6 @@ data class RoutineState(
     val routines: List<Routine> = emptyList(),
     val title: String = "",
     val description: String = "",
-    val frecuency: String = "",
+    val frequency: String = "",
     val sessionTime: Float = 0f
 )

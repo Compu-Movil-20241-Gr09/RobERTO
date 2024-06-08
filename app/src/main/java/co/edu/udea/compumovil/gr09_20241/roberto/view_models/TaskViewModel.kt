@@ -37,7 +37,7 @@ class TaskViewModel(
                     dao.deleteTask(event.task)
                 }
             }
-            TaskEvent.SaveTask -> {
+            is TaskEvent.SaveTask -> {
                 val title = _state.value.title
                 val description = _state.value.description
                 val deadline = _state.value.deadline

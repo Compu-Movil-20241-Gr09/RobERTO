@@ -27,42 +27,31 @@ fun TextFieldDatePicker(
     label: String,
     value: String,
     onValueChange: ((String) -> Unit)
-){
+) {
     val mContext = LocalContext.current
 
-    // Declaring integer values
-    // for year, month and day
-    val mYear: Int
-    val mMonth: Int
-    val mDay: Int
-
-    // Initializing a Calendar
+    // Fetching current year, month, and day
     val mCalendar = Calendar.getInstance()
-
-    // Fetching current year, month and day
-    mYear = mCalendar.get(Calendar.YEAR)
-    mMonth = mCalendar.get(Calendar.MONTH)
-    mDay = mCalendar.get(Calendar.DAY_OF_MONTH)
-
-    mCalendar.time = Date()
-
-    // Declaring a string value to
-    // store date in string format
-    val mDate = remember { mutableStateOf("") }
+    val mYear = mCalendar.get(Calendar.YEAR)
+    val mMonth = mCalendar.get(Calendar.MONTH)
+    val mDay = mCalendar.get(Calendar.DAY_OF_MONTH)
 
     // Declaring DatePickerDialog and setting
-    // initial values as current values (present year, month and day)
+    // initial values as current values (present year, month, and day)
     val mDatePickerDialog = DatePickerDialog(
         mContext,
         { _: DatePicker, mYear: Int, mMonth: Int, mDayOfMonth: Int ->
-            mDate.value = "$mDayOfMonth/${mMonth+1}/$mYear"
-            onValueChange(mDate.value)
+            // Format date as dd/MM/yyyy
+            val formattedDay = if (mDayOfMonth < 10) "0$mDayOfMonth" else "$mDayOfMonth"
+            val formattedMonth = if (mMonth + 1 < 10) "0${mMonth + 1}" else "${mMonth + 1}"
+            val formattedDate = "$formattedDay/$formattedMonth/$mYear"
+            onValueChange(formattedDate)
         }, mYear, mMonth, mDay
     )
 
     Row(
         verticalAlignment = Alignment.CenterVertically
-    ){
+    ) {
         OutlinedTextField(
             modifier = Modifier
                 .padding(2.dp)
@@ -70,7 +59,7 @@ fun TextFieldDatePicker(
             value = value,
             onValueChange = onValueChange,
             label = { Text(text = label) },
-            leadingIcon =  {
+            leadingIcon = {
                 Icon(imageVector = Icons.Default.DateRange, contentDescription = "Date")
             },
             enabled = false,
@@ -78,7 +67,7 @@ fun TextFieldDatePicker(
                 disabledBorderColor = MaterialTheme.colorScheme.onSurface,
                 disabledPlaceholderColor = MaterialTheme.colorScheme.onSurfaceVariant,
                 disabledLabelColor = MaterialTheme.colorScheme.onSurfaceVariant,
-                //For Icons
+                // For Icons
                 disabledLeadingIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
                 disabledTrailingIconColor = MaterialTheme.colorScheme.onSurfaceVariant
             )

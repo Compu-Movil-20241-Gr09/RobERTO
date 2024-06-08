@@ -36,7 +36,7 @@ class GoalViewModel(
                     dao.deleteGoal(event.goal)
                 }
             }
-            GoalEvent.SaveGoal -> {
+            is GoalEvent.SaveGoal -> {
                 val title = _state.value.title
                 val description = _state.value.description
                 val steps = _state.value.steps

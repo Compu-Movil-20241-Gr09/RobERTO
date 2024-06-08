@@ -28,6 +28,7 @@ import co.edu.udea.compumovil.gr09_20241.roberto.ui.composables.RobertoBottomApp
 import co.edu.udea.compumovil.gr09_20241.roberto.ui.composables.RobertoTopAppBar
 import co.edu.udea.compumovil.gr09_20241.roberto.view_models.GoalViewModel
 import co.edu.udea.compumovil.gr09_20241.roberto.view_models.RoutineViewModel
+import co.edu.udea.compumovil.gr09_20241.roberto.view_models.ScheduledItemViewModel
 import co.edu.udea.compumovil.gr09_20241.roberto.view_models.TaskViewModel
 
 enum class RobertoScreen(@StringRes val title: Int){
@@ -44,6 +45,7 @@ fun RobertoApp(
     taskViewModel: TaskViewModel = viewModel(),
     routineViewModel: RoutineViewModel = viewModel(),
     goalViewModel: GoalViewModel = viewModel(),
+    scheduledItemViewModel : ScheduledItemViewModel = viewModel(),
     navController: NavHostController = rememberNavController()
 ) {
     // Get current back stack entry
@@ -76,7 +78,8 @@ fun RobertoApp(
             composable(route = RobertoScreen.Home.name){
                 HomeScreen(
                     taskViewModel = taskViewModel,
-                    routineViewModel = routineViewModel
+                    routineViewModel = routineViewModel,
+                    scheduledItemViewModel = scheduledItemViewModel
                 )
             }
             composable(route = RobertoScreen.NewTask.name){

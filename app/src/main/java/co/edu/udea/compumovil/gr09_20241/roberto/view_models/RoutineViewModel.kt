@@ -33,16 +33,16 @@ class RoutineViewModel(
                     dao.deleteRoutine(event.routine)
                 }
             }
-            RoutineEvent.SaveRoutine -> {
+            is RoutineEvent.SaveRoutine -> {
                 val title = _state.value.title
                 val description = _state.value.description
-                val frecuency = _state.value.frecuency
+                val frecuency = _state.value.frequency
                 val sessionTime = _state.value.sessionTime
 
                 val routine = Routine(
                     title = title,
                     description = description,
-                    frecuency = frecuency,
+                    frequency = frecuency,
                     sessionTime = sessionTime
                 )
 
@@ -53,7 +53,7 @@ class RoutineViewModel(
                 _state.update { it.copy(
                     title = "",
                     description = "",
-                    frecuency = "",
+                    frequency = "",
                     sessionTime = 0f
                 ) }
             }
@@ -62,9 +62,9 @@ class RoutineViewModel(
                     description = event.description
                 ) }
             }
-            is RoutineEvent.SetFrecuency -> {
+            is RoutineEvent.SetFrequency -> {
                 _state.update { it.copy(
-                    frecuency = event.frecuency
+                    frequency = event.frequency
                 ) }
             }
             is RoutineEvent.SetSessionTime -> {

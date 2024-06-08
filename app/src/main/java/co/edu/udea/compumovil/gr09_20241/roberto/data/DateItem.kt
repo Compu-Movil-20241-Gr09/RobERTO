@@ -32,16 +32,3 @@ class DateItem (
     }
 }
 
-fun generateDateItems(): List<DateItem>{
-    val currentDate = LocalDate.now()
-    val dates = mutableListOf<DateItem>()
-    for (i in -15..15){
-        val date = currentDate.plusDays(i.toLong())
-        val formattedDate = date.format(DateTimeFormatter.ofPattern("dd MMM yyyy"))
-        val isSelected = date == currentDate
-        dates.add(DateItem(date, formattedDate, isSelected))
-    }
-    return dates
-}
-
-

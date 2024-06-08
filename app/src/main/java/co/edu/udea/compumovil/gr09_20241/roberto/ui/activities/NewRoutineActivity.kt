@@ -107,7 +107,7 @@ fun NewRoutinePortrait(
             maxLines = 5
         )
 
-        // DaySelector for frecuency
+        // DaySelector for frequency
         Text(
             modifier = Modifier,
             text = stringResource(R.string.repeat),
@@ -117,8 +117,8 @@ fun NewRoutinePortrait(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
-            selectedDays = state.frecuency,
-            onDaySelectedChange = { onEvent(RoutineEvent.SetFrecuency(it)) }
+            selectedDays = state.frequency,
+            onDaySelectedChange = { onEvent(RoutineEvent.SetFrequency(it)) }
         )
 
         // NumberInput for session time
@@ -218,8 +218,8 @@ fun NewRoutineLandscape(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
-            selectedDays = state.frecuency,
-            onDaySelectedChange = { onEvent(RoutineEvent.SetFrecuency(it)) }
+            selectedDays = state.frequency,
+            onDaySelectedChange = { onEvent(RoutineEvent.SetFrequency(it)) }
         )
 
         // NumberInput for session time
@@ -261,7 +261,7 @@ fun NewRoutineLandscape(
 }
 
 fun isNewRoutineValid( state: RoutineState) : Boolean {
-    return state.title.isNotBlank() && state.frecuency.isNotBlank() && state.sessionTime != 0f
+    return state.title.isNotBlank() && state.frequency.isNotBlank() && state.sessionTime != 0f
 }
 
 

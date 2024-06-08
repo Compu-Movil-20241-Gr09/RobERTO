@@ -23,6 +23,7 @@ import co.edu.udea.compumovil.gr09_20241.roberto.ui.activities.NewRoutineScreen
 import co.edu.udea.compumovil.gr09_20241.roberto.ui.theme.RobERTOTheme
 import co.edu.udea.compumovil.gr09_20241.roberto.view_models.GoalViewModel
 import co.edu.udea.compumovil.gr09_20241.roberto.view_models.RoutineViewModel
+import co.edu.udea.compumovil.gr09_20241.roberto.view_models.ScheduledItemViewModel
 import co.edu.udea.compumovil.gr09_20241.roberto.view_models.TaskViewModel
 
 class MainActivity : ComponentActivity() {
@@ -32,7 +33,7 @@ class MainActivity : ComponentActivity() {
             applicationContext,
             RobertoDatabase::class.java,
             "RobERTO_Database"
-        ).build()
+        ).fallbackToDestructiveMigration().build()
     }
 
     val taskViewModel by viewModels<TaskViewModel>(
@@ -64,6 +65,17 @@ class MainActivity : ComponentActivity() {
             }
         }
     )
+
+    val scheduledItemsViewModel by viewModels<ScheduledItemViewModel>(
+        factoryProducer = {
+            object : ViewModelProvider.Factory{
+                override fun <T : ViewModel> create(modelClass: Class<T>): T {
+                    return ScheduledItemViewModel(db.scheduledItemDao) as T
+                }
+            }
+        }
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -72,7 +84,8 @@ class MainActivity : ComponentActivity() {
                 RobertoApp(
                     taskViewModel = taskViewModel,
                     routineViewModel = routineViewModel,
-                    goalViewModel = goalViewModel
+                    goalViewModel = goalViewModel,
+                    scheduledItemViewModel = scheduledItemsViewModel
                 )
             }
         }
